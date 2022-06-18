@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"log"
 	"net"
@@ -84,7 +85,12 @@ func (s *server) listRooms(c *client, args []string) {
 }
 
 func (s *server) msg(c *client, args []string) {
+	if c.room == nil {
+		c.err(errors.New("tou must join a room first"))
+		return
+	}
 
+	c.room.broadcast(c, c.name+" : "+strings.Join(args[1:len(args)], " "))
 }
 
 func (s *server) quit(c *client, args []string) {

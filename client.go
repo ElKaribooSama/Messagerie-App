@@ -31,31 +31,31 @@ func (c *client) readInput() {
 			c.commands <- command{
 				id:     CMD_NICK,
 				client: c,
-				arg:    args,
+				args:   args,
 			}
 		case "/join":
 			c.commands <- command{
 				id:     CMD_JOIN,
 				client: c,
-				arg:    args,
+				args:   args,
 			}
 		case "/rooms":
 			c.commands <- command{
 				id:     CMD_ROOMS,
 				client: c,
-				arg:    args,
+				args:   args,
 			}
 		case "/msg":
 			c.commands <- command{
 				id:     CMD_MSG,
 				client: c,
-				arg:    args,
+				args:   args,
 			}
 		case "/quit":
 			c.commands <- command{
 				id:     CMD_QUIT,
 				client: c,
-				arg:    args,
+				args:   args,
 			}
 		default:
 			c.err(fmt.Errorf("unknow command: %s", cmd))

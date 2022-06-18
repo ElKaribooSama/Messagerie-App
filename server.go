@@ -94,7 +94,11 @@ func (s *server) msg(c *client, args []string) {
 }
 
 func (s *server) quit(c *client, args []string) {
+	log.Printf("client has disconnected : %s", c.connection.RemoteAddr().String())
 
+	s.quitCurrentRoom(c)
+	c.msg("exiting message app")
+	c.connection.Close()
 }
 
 func (s *server) quitCurrentRoom(c *client) {
